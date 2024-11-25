@@ -9,15 +9,24 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<PackageId>Autodesk.Revit.SDK</PackageId>
+		<PackageId>RevitApi.Common</PackageId>
 		<Version>$(Version)</Version>
-		<Authors>Zhmayev Yaroslav</Authors>
-		<Company>CodeCave LLC</Company>
+		<Authors>VampireFu</Authors>
+		<Company></Company>
 		<PackageTags>revit, sdk, api, sdk, autodesk, revitapi, revitsdk, C#, addin, plugin, command, external application, applicaion, $(RevitVersion), revit$(RevitVersion)</PackageTags>
-		<Description>The Software Development Toolkit (SDK) provides extensive .NET code samples and documentation to help you get started developing with the Revit API.</Description>
+		<Description>The Software Development Toolkit (SDK) provides extensive .NET code samples and documentation to help you get started developing with the Revit API.
+		
+		AdWindows.dll
+		RevitAddInUtility.dll
+		RevitAPI.dll
+		RevitAPIIFC.dll
+		RevitAPIUI.dll
+		RevitNET.dll
+		UIFramework.dll
+		UIFrameworkServices.dll</Description>
 		<Copyright>© Autodesk Inc. All rights reserved</Copyright>
 		<PackageProjectUrl>https://www.autodesk.com/developer-network/platform-technologies/revit</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/CodeCavePro/RevitSDK</RepositoryUrl>
+		<RepositoryUrl>https://github.com/vampirefu/revitApi</RepositoryUrl>
 		<RepositoryType>Git</RepositoryType>
 		<NeutralLanguage>en</NeutralLanguage>
 	</PropertyGroup>

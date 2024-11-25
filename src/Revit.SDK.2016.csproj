@@ -5,11 +5,15 @@
     -->
 		<RevitVersion>2016</RevitVersion>
 		<Version>$(RevitVersion).0.428.0</Version>
-		<FileVersion>$(RevitVersion).0.428</FileVersion>
-		<AssemblyVersion>$(RevitVersion).0.428</AssemblyVersion>
+		<FileVersion>$(RevitVersion).0.428.0</FileVersion>
+		<AssemblyVersion>$(RevitVersion).0.428.0</AssemblyVersion>
 		<TargetPath>net45</TargetPath>
 		<IsPackable>true</IsPackable>
 	</PropertyGroup>
 
 	<Import Project="Revit.SDK.Nuget.csproj" />
+
+	<ItemGroup>
+	  <PackageReference Include="System.Runtime" Version="4.3.1" />
+	</ItemGroup>
 </Project>
