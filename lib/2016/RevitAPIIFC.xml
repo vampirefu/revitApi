@@ -44,6 +44,146 @@
    2014
 </since>
         </member>
+        <member name="M:Autodesk.Revit.DB.IFC.ImporterIFC.SetFile(Autodesk.Revit.DB.IFC.IFCFile)">
+            <summary>
+   Sets the handle to the IFC file being created during this import operation.
+</summary>
+            <param name="file">
+   The handle to the file.
+</param>
+            <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
+   A non-optional argument was NULL
+</exception>
+            <since>
+   2014
+</since>
+        </member>
+        <member name="M:Autodesk.Revit.DB.IFC.ImporterIFC.ProcessIFCProject(Autodesk.Revit.DB.IFC.IFCAnyHandle,System.Collections.Generic.IDictionary`2{Autodesk.Revit.DB.IFC.IFCAnyHandle,Autodesk.Revit.DB.ElementId})">
+            <summary>
+   The entry point to the native IFC import function.  Processes the main IfcProject and creates appropriate Revit elements.
+</summary>
+            <remarks>
+   This function allows for a "hybrid" .NET/native import.  For any handle below, there will be no native processing,
+   and it will be assumed that the element created in .NET is valid and appropriate.  Note that this is only applicable
+   for IFCAnyHandles that are subtypes of IfcProduct and IfcBuildingElementStorey; other handles will be ignored.
+   Also, note that some elements have interdependencies that are not yet handled by this function.  These include:
+   1. IfcDoor/IfcWindow and their IfcOpeningElements and 2D representations should both be created in the same environment (.NET or native).
+   2. Symbols and their instances should both be created in the same environment (.NET or native).
+</remarks>
+            <param name="ifcProject">
+   The IfcProject containing the entities in the IFC file.
+</param>
+            <param name="createdElements">
+   The element ids for the already created elements.  These handles will not be processed in native code.
+</param>
+            <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
+   A non-optional argument was NULL
+</exception>
+            <since>
+   2015
+</since>
+        </member>
+        <member name="M:Autodesk.Revit.DB.IFC.ImporterIFC.ProcessIFCProject(Autodesk.Revit.DB.IFC.IFCAnyHandle)">
+            <summary>
+   The entry point to the native IFC import function.  Processes the main IfcProject and creates appropriate Revit elements.
+</summary>
+            <param name="ifcProject">
+   The IfcProject containing the entities in the IFC file.
+</param>
+            <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
+   A non-optional argument was NULL
+</exception>
+            <since>
+   2014
+</since>
+        </member>
+        <member name="M:Autodesk.Revit.DB.IFC.ImporterIFC.GetOptions">
+            <summary>
+   Gets the collection of named options set by the importer client.
+</summary>
+            <returns>
+   The collection of named options.
+</returns>
+            <since>
+   2015
+</since>
+        </member>
+        <member name="P:Autodesk.Revit.DB.IFC.ImporterIFC.IsValidObject">
+            <summary>
+   Specifies whether the .NET object represents a valid Revit entity.
+</summary>
+            <remarks>
+   If the corresponding Revit native object is destroyed, or creation of the corresponding object is undone,
+   a managed API object containing it is no longer valid. API methods cannot be called on invalidated wrapper objects.
+</remarks>
+            <returns>
+   True if the API object holds a valid Revit native object, false otherwise.
+</returns>
+            <since>
+   2014
+</since>
+        </member>
+        <member name="P:Autodesk.Revit.DB.IFC.ImporterIFC.Document">
+            <summary>
+   Gets the document associated with the import.
+</summary>
+            <since>
+   2015
+</since>
+        </member>
+        <member name="P:Autodesk.Revit.DB.IFC.ImporterIFC.FullFileName">
+            <summary>
+   The full file name of the IFC file to be import.
+</summary>
+            <since>
+   2014
+</since>
+        </member>
+        <member name="T:Autodesk.Revit.DB.IFC.ImporterIFC">
+            <summary>
+   The main class provided by Revit to allow implementation of IFC import.
+</summary>
+            <remarks>
+   An instance of this class is provided to clients which implement IImporterIFC
+   in order to provide an implementation for IFC import.  It contains information
+   on the options selected by the user for the import operation, as well as
+   members used to access specific types of data needed to implement the import
+   properly.
+</remarks>
+            <since>
+   2014
+</since>
+        </member>
+        <member name="M:Autodesk.Revit.DB.IFC.IIFCImporterServerProxy.ImportIFC(Autodesk.Revit.DB.IFC.ImporterIFC)">
+            <summary>
+   The method that Revit will invoke to perform an import from IFC.
+</summary>
+            <param name="importer">
+   The IFC importer.
+</param>
+            <since>
+   2014
+</since>
+        </member>
+        <member name="M:Autodesk.Revit.DB.IFC.IIFCImporterServer.ImportIFC(Autodesk.Revit.DB.IFC.ImporterIFC)">
+            <summary>
+   The method that Revit will invoke to perform an import from IFC.
+</summary>
+            <param name="importer">
+   The IFC importer.
+</param>
+            <since>
+   2014
+</since>
+        </member>
+        <member name="T:Autodesk.Revit.DB.IFC.IIFCImporterServer">
+            <summary>
+   Interface for external servers implementing IFC import.
+</summary>
+            <since>
+   2014
+</since>
+        </member>
         <member name="M:Autodesk.Revit.DB.IFC.IFCGeometryInfo.GetRepresentations">
             <summary>
    Gets the representation handles created representing the processed geometry and stored in this object.
@@ -8228,146 +8368,6 @@ Represents a basic transition.
 This class encapsulates IUIAnimationTransition interface and serves as a base class for all transitions.
 </remarks>
         </member>
-        <member name="M:Autodesk.Revit.DB.IFC.ImporterIFC.SetFile(Autodesk.Revit.DB.IFC.IFCFile)">
-            <summary>
-   Sets the handle to the IFC file being created during this import operation.
-</summary>
-            <param name="file">
-   The handle to the file.
-</param>
-            <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
-   A non-optional argument was NULL
-</exception>
-            <since>
-   2014
-</since>
-        </member>
-        <member name="M:Autodesk.Revit.DB.IFC.ImporterIFC.ProcessIFCProject(Autodesk.Revit.DB.IFC.IFCAnyHandle,System.Collections.Generic.IDictionary`2{Autodesk.Revit.DB.IFC.IFCAnyHandle,Autodesk.Revit.DB.ElementId})">
-            <summary>
-   The entry point to the native IFC import function.  Processes the main IfcProject and creates appropriate Revit elements.
-</summary>
-            <remarks>
-   This function allows for a "hybrid" .NET/native import.  For any handle below, there will be no native processing,
-   and it will be assumed that the element created in .NET is valid and appropriate.  Note that this is only applicable
-   for IFCAnyHandles that are subtypes of IfcProduct and IfcBuildingElementStorey; other handles will be ignored.
-   Also, note that some elements have interdependencies that are not yet handled by this function.  These include:
-   1. IfcDoor/IfcWindow and their IfcOpeningElements and 2D representations should both be created in the same environment (.NET or native).
-   2. Symbols and their instances should both be created in the same environment (.NET or native).
-</remarks>
-            <param name="ifcProject">
-   The IfcProject containing the entities in the IFC file.
-</param>
-            <param name="createdElements">
-   The element ids for the already created elements.  These handles will not be processed in native code.
-</param>
-            <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
-   A non-optional argument was NULL
-</exception>
-            <since>
-   2015
-</since>
-        </member>
-        <member name="M:Autodesk.Revit.DB.IFC.ImporterIFC.ProcessIFCProject(Autodesk.Revit.DB.IFC.IFCAnyHandle)">
-            <summary>
-   The entry point to the native IFC import function.  Processes the main IfcProject and creates appropriate Revit elements.
-</summary>
-            <param name="ifcProject">
-   The IfcProject containing the entities in the IFC file.
-</param>
-            <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
-   A non-optional argument was NULL
-</exception>
-            <since>
-   2014
-</since>
-        </member>
-        <member name="M:Autodesk.Revit.DB.IFC.ImporterIFC.GetOptions">
-            <summary>
-   Gets the collection of named options set by the importer client.
-</summary>
-            <returns>
-   The collection of named options.
-</returns>
-            <since>
-   2015
-</since>
-        </member>
-        <member name="P:Autodesk.Revit.DB.IFC.ImporterIFC.IsValidObject">
-            <summary>
-   Specifies whether the .NET object represents a valid Revit entity.
-</summary>
-            <remarks>
-   If the corresponding Revit native object is destroyed, or creation of the corresponding object is undone,
-   a managed API object containing it is no longer valid. API methods cannot be called on invalidated wrapper objects.
-</remarks>
-            <returns>
-   True if the API object holds a valid Revit native object, false otherwise.
-</returns>
-            <since>
-   2014
-</since>
-        </member>
-        <member name="P:Autodesk.Revit.DB.IFC.ImporterIFC.Document">
-            <summary>
-   Gets the document associated with the import.
-</summary>
-            <since>
-   2015
-</since>
-        </member>
-        <member name="P:Autodesk.Revit.DB.IFC.ImporterIFC.FullFileName">
-            <summary>
-   The full file name of the IFC file to be import.
-</summary>
-            <since>
-   2014
-</since>
-        </member>
-        <member name="T:Autodesk.Revit.DB.IFC.ImporterIFC">
-            <summary>
-   The main class provided by Revit to allow implementation of IFC import.
-</summary>
-            <remarks>
-   An instance of this class is provided to clients which implement IImporterIFC
-   in order to provide an implementation for IFC import.  It contains information
-   on the options selected by the user for the import operation, as well as
-   members used to access specific types of data needed to implement the import
-   properly.
-</remarks>
-            <since>
-   2014
-</since>
-        </member>
-        <member name="M:Autodesk.Revit.DB.IFC.IIFCImporterServerProxy.ImportIFC(Autodesk.Revit.DB.IFC.ImporterIFC)">
-            <summary>
-   The method that Revit will invoke to perform an import from IFC.
-</summary>
-            <param name="importer">
-   The IFC importer.
-</param>
-            <since>
-   2014
-</since>
-        </member>
-        <member name="M:Autodesk.Revit.DB.IFC.IIFCImporterServer.ImportIFC(Autodesk.Revit.DB.IFC.ImporterIFC)">
-            <summary>
-   The method that Revit will invoke to perform an import from IFC.
-</summary>
-            <param name="importer">
-   The IFC importer.
-</param>
-            <since>
-   2014
-</since>
-        </member>
-        <member name="T:Autodesk.Revit.DB.IFC.IIFCImporterServer">
-            <summary>
-   Interface for external servers implementing IFC import.
-</summary>
-            <since>
-   2014
-</since>
-        </member>
         <member name="M:Autodesk.Revit.DB.IFC.IExporterIFCProxy.ExportIFC(Autodesk.Revit.DB.Document,Autodesk.Revit.DB.IFC.ExporterIFC,Autodesk.Revit.DB.View)">
             <summary>
    The method that Revit will invoke to perform an export to IFC.
@@ -9481,340 +9481,6 @@ This class encapsulates IUIAnimationTransition interface and serves as a base cl
             <since>
    2012
 </since>
-        </member>
-        <member name="M:Autodesk.Revit.DB.IFC.IFCExtrusionCalculatorUtils.CalculateExtrusionData(Autodesk.Revit.DB.IFC.IFCExtrusionCalculatorOptions,System.Collections.Generic.IList`1{Autodesk.Revit.DB.Face})">
-            <summary>
-   Calculates the extrusion data from a collection of Revit geometry faces.
-</summary>
-            <param name="extrInfo">
-   The options for extrusion extraction.
-</param>
-            <param name="allInputFaces">
-   The collection of faces.
-</param>
-            <returns>
-   A collection of extrusion data calculated for the geometry.
-   If the function fails to calculate one or more valid extrusions,
-   this collection will be empty.
-</returns>
-            <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
-   A non-optional argument was NULL
-</exception>
-            <since>
-   2012
-</since>
-        </member>
-        <member name="M:Autodesk.Revit.DB.IFC.IFCExtrusionCalculatorUtils.CalculateExtrusionData(Autodesk.Revit.DB.IFC.IFCExtrusionCalculatorOptions,Autodesk.Revit.DB.GeometryObject)">
-            <summary>
-   Calculates the extrusion data from a Revit geometry object.
-</summary>
-            <param name="extrusionOptions">
-   The options for extrusion extraction.
-</param>
-            <param name="geometryObject">
-   The geometry object.
-</param>
-            <returns>
-   A collection of extrusion data calculated for the geometry.
-   If the function fails to calculate one or more valid extrusions,
-   this collection will be empty.
-</returns>
-            <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
-   A non-optional argument was NULL
-</exception>
-            <since>
-   2012
-</since>
-        </member>
-        <member name="T:Autodesk.Revit.DB.IFC.IFCExtrusionCalculatorUtils">
-            <summary>
-   A utility class used to calculate extrusion data from Revit geometry for IFC export.
-</summary>
-            <since>
-   2012
-</since>
-        </member>
-        <member name="P:Autodesk.Revit.DB.IFC.IFCExtrusionCalculatorOptions.IsValidObject">
-            <summary>
-   Specifies whether the .NET object represents a valid Revit entity.
-</summary>
-            <remarks>
-   If the corresponding Revit native object is destroyed, or creation of the corresponding object is undone,
-   a managed API object containing it is no longer valid. API methods cannot be called on invalidated wrapper objects.
-</remarks>
-            <returns>
-   True if the API object holds a valid Revit native object, false otherwise.
-</returns>
-            <since>
-   2014
-</since>
-        </member>
-        <member name="P:Autodesk.Revit.DB.IFC.IFCExtrusionCalculatorOptions.Scale">
-            <summary>
-   The scaling factor for length measurements from the default Revit units to the export units.
-</summary>
-            <since>
-   2012
-</since>
-        </member>
-        <member name="P:Autodesk.Revit.DB.IFC.IFCExtrusionCalculatorOptions.CustomAxis">
-            <summary>
-   The custom axis to try (if extrusionAxes includes an option for a custom direction).
-</summary>
-            <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
-   When setting this property: A non-optional argument was NULL
-</exception>
-            <since>
-   2012
-</since>
-        </member>
-        <member name="P:Autodesk.Revit.DB.IFC.IFCExtrusionCalculatorOptions.ExtrusionAxes">
-            <summary>
-   The extrusion axes to try when doing the calculation.
-</summary>
-            <exception cref="T:Autodesk.Revit.Exceptions.ArgumentOutOfRangeException">
-   When setting this property: A value passed for an enumeration argument is not a member of that enumeration
-</exception>
-            <since>
-   2012
-</since>
-        </member>
-        <member name="M:Autodesk.Revit.DB.IFC.IFCExtrusionCalculatorOptions.#ctor(Autodesk.Revit.DB.IFC.ExporterIFC,Autodesk.Revit.DB.IFC.IFCExtrusionAxes,Autodesk.Revit.DB.XYZ,System.Double)">
-            <summary>
-   Constructs a new instance of a class used to calculate extrusions from Revit geometry.
-</summary>
-            <param name="exporterIFC">
-   The exporter.
-</param>
-            <param name="extrusionAxes">
-   The extrusion axes to try when doing the calculation.
-</param>
-            <param name="customAxis">
-   The custom axis to try (if extrusionAxes includes an option for a custom direction).
-</param>
-            <param name="scale">
-   The scaling factor for length measurements from the default Revit units to the export units.
-</param>
-            <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
-   A non-optional argument was NULL
-</exception>
-            <exception cref="T:Autodesk.Revit.Exceptions.ArgumentOutOfRangeException">
-   A value passed for an enumeration argument is not a member of that enumeration
-</exception>
-            <since>
-   2012
-</since>
-        </member>
-        <member name="T:Autodesk.Revit.DB.IFC.IFCExtrusionCalculatorOptions">
-            <summary>
-   This class contains the options used to calculate extrusions from Revit geometry.
-</summary>
-            <since>
-   2012
-</since>
-        </member>
-        <member name="M:Autodesk.Revit.DB.IFC.IFCExtrusionData.GetLoops">
-            <summary>
-   Gets the curve loops that form the base shape of the extrusion.
-</summary>
-            <returns>
-   The collection of loops.
-</returns>
-            <since>
-   2012
-</since>
-        </member>
-        <member name="M:Autodesk.Revit.DB.IFC.IFCExtrusionData.ClearLoops">
-            <summary>
-   Clears the curve loops stored in the extrusion data.
-</summary>
-            <since>
-   2012
-</since>
-        </member>
-        <member name="M:Autodesk.Revit.DB.IFC.IFCExtrusionData.RemoveLoopAt(System.Int32)">
-            <summary>
-   Removes the loop at the specified index.
-</summary>
-            <param name="index">
-   The zero-based index of the loop to remove.
-</param>
-            <since>
-   2012
-</since>
-        </member>
-        <member name="M:Autodesk.Revit.DB.IFC.IFCExtrusionData.AddLoop(Autodesk.Revit.DB.CurveLoop)">
-            <summary>
-   Adds a curve loop to the extrusion data.
-</summary>
-            <param name="pLoop">
-   The curve loop.
-</param>
-            <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
-   A non-optional argument was NULL
-</exception>
-            <since>
-   2012
-</since>
-        </member>
-        <member name="M:Autodesk.Revit.DB.IFC.IFCExtrusionData.IsValid">
-            <summary>
-   Determines if the extrusion data represents a valid extrusion.
-</summary>
-            <returns>
-   True if the extrusion is valid, false otherwise.
-</returns>
-            <since>
-   2012
-</since>
-        </member>
-        <member name="P:Autodesk.Revit.DB.IFC.IFCExtrusionData.IsValidObject">
-            <summary>
-   Specifies whether the .NET object represents a valid Revit entity.
-</summary>
-            <remarks>
-   If the corresponding Revit native object is destroyed, or creation of the corresponding object is undone,
-   a managed API object containing it is no longer valid. API methods cannot be called on invalidated wrapper objects.
-</remarks>
-            <returns>
-   True if the API object holds a valid Revit native object, false otherwise.
-</returns>
-            <since>
-   2014
-</since>
-        </member>
-        <member name="P:Autodesk.Revit.DB.IFC.IFCExtrusionData.ExtrusionDirection">
-            <summary>
-   The direction used for the extrusion.
-</summary>
-            <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
-   When setting this property: A non-optional argument was NULL
-</exception>
-            <since>
-   2012
-</since>
-        </member>
-        <member name="P:Autodesk.Revit.DB.IFC.IFCExtrusionData.ExtrusionBasis">
-            <summary>
-   The basis used for the extrusion.
-</summary>
-            <exception cref="T:Autodesk.Revit.Exceptions.ArgumentOutOfRangeException">
-   When setting this property: A value passed for an enumeration argument is not a member of that enumeration
-</exception>
-            <since>
-   2012
-</since>
-        </member>
-        <member name="P:Autodesk.Revit.DB.IFC.IFCExtrusionData.ScaledExtrusionLength">
-            <summary>
-   The length of the extrusion, scaled in the units of the export.
-</summary>
-            <since>
-   2012
-</since>
-        </member>
-        <member name="M:Autodesk.Revit.DB.IFC.IFCExtrusionData.#ctor">
-            <summary>
-   Constructs a new empty extrusion data object.
-</summary>
-            <since>
-   2012
-</since>
-        </member>
-        <member name="T:Autodesk.Revit.DB.IFC.IFCExtrusionData">
-            <summary>
-   Represents the geometry of an extrusion (a solid body or opening) generated
-   from Revit geometry.
-</summary>
-            <since>
-   2012
-</since>
-        </member>
-        <member name="T:Autodesk.Revit.DB.IFC.IFCExtrusionBasis">
-            <summary>
-   This enumerated type represents the possible bases for derivation of extrusion geometry.
-</summary>
-            <since>
-   2012
-</since>
-        </member>
-        <member name="F:Autodesk.Revit.DB.IFC.IFCExtrusionBasis.BasisZ">
-            <summary>
-   The Z direction.
-</summary>
-        </member>
-        <member name="F:Autodesk.Revit.DB.IFC.IFCExtrusionBasis.BasisY">
-            <summary>
-   The Y direction.
-</summary>
-        </member>
-        <member name="F:Autodesk.Revit.DB.IFC.IFCExtrusionBasis.BasisX">
-            <summary>
-   The X direction.
-</summary>
-        </member>
-        <member name="F:Autodesk.Revit.DB.IFC.IFCExtrusionBasis.InvalidBasis">
-            <summary>
-   An invalid basis (typically indicating that the extrusion extraction was unsuccessful).
-</summary>
-        </member>
-        <member name="T:Autodesk.Revit.DB.IFC.IFCExtrusionAxes">
-            <summary>
-   Represents the possible axes to try when generating an extrusion using IFCCreateExtrusionData.
-</summary>
-            <since>
-   2012
-</since>
-        </member>
-        <member name="F:Autodesk.Revit.DB.IFC.IFCExtrusionAxes.TryXYZAndCustom">
-            <summary>
-   The x-, y-, and z-axes, and a custom direction.
-</summary>
-        </member>
-        <member name="F:Autodesk.Revit.DB.IFC.IFCExtrusionAxes.TryCustom">
-            <summary>
-   A custom direction.
-</summary>
-        </member>
-        <member name="F:Autodesk.Revit.DB.IFC.IFCExtrusionAxes.TryXYZ">
-            <summary>
-   The x-, y-, and z-axes.
-</summary>
-        </member>
-        <member name="F:Autodesk.Revit.DB.IFC.IFCExtrusionAxes.TryYZ">
-            <summary>
-   The y- and z-axes.
-</summary>
-        </member>
-        <member name="F:Autodesk.Revit.DB.IFC.IFCExtrusionAxes.TryXZ">
-            <summary>
-   The x- and z-axes.
-</summary>
-        </member>
-        <member name="F:Autodesk.Revit.DB.IFC.IFCExtrusionAxes.TryZ">
-            <summary>
-   The z-axis.
-</summary>
-        </member>
-        <member name="F:Autodesk.Revit.DB.IFC.IFCExtrusionAxes.TryXY">
-            <summary>
-   The x- and y-axes.
-</summary>
-        </member>
-        <member name="F:Autodesk.Revit.DB.IFC.IFCExtrusionAxes.TryY">
-            <summary>
-   The y-axis.
-</summary>
-        </member>
-        <member name="F:Autodesk.Revit.DB.IFC.IFCExtrusionAxes.TryX">
-            <summary>
-   The x-axis.
-</summary>
-        </member>
-        <member name="F:Autodesk.Revit.DB.IFC.IFCExtrusionAxes.TryDefault">
-            <summary>
-   The default value.
-</summary>
         </member>
         <member name="M:Autodesk.Revit.DB.IFC.IFCTransaction.RollBack">
             <summary>
@@ -11607,6 +11273,340 @@ Gets the hash code.
         <member name="F:Autodesk.Revit.DB.IFC.IFCLogical.True">
             <summary>
    True.
+</summary>
+        </member>
+        <member name="M:Autodesk.Revit.DB.IFC.IFCExtrusionCalculatorUtils.CalculateExtrusionData(Autodesk.Revit.DB.IFC.IFCExtrusionCalculatorOptions,System.Collections.Generic.IList`1{Autodesk.Revit.DB.Face})">
+            <summary>
+   Calculates the extrusion data from a collection of Revit geometry faces.
+</summary>
+            <param name="extrInfo">
+   The options for extrusion extraction.
+</param>
+            <param name="allInputFaces">
+   The collection of faces.
+</param>
+            <returns>
+   A collection of extrusion data calculated for the geometry.
+   If the function fails to calculate one or more valid extrusions,
+   this collection will be empty.
+</returns>
+            <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
+   A non-optional argument was NULL
+</exception>
+            <since>
+   2012
+</since>
+        </member>
+        <member name="M:Autodesk.Revit.DB.IFC.IFCExtrusionCalculatorUtils.CalculateExtrusionData(Autodesk.Revit.DB.IFC.IFCExtrusionCalculatorOptions,Autodesk.Revit.DB.GeometryObject)">
+            <summary>
+   Calculates the extrusion data from a Revit geometry object.
+</summary>
+            <param name="extrusionOptions">
+   The options for extrusion extraction.
+</param>
+            <param name="geometryObject">
+   The geometry object.
+</param>
+            <returns>
+   A collection of extrusion data calculated for the geometry.
+   If the function fails to calculate one or more valid extrusions,
+   this collection will be empty.
+</returns>
+            <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
+   A non-optional argument was NULL
+</exception>
+            <since>
+   2012
+</since>
+        </member>
+        <member name="T:Autodesk.Revit.DB.IFC.IFCExtrusionCalculatorUtils">
+            <summary>
+   A utility class used to calculate extrusion data from Revit geometry for IFC export.
+</summary>
+            <since>
+   2012
+</since>
+        </member>
+        <member name="P:Autodesk.Revit.DB.IFC.IFCExtrusionCalculatorOptions.IsValidObject">
+            <summary>
+   Specifies whether the .NET object represents a valid Revit entity.
+</summary>
+            <remarks>
+   If the corresponding Revit native object is destroyed, or creation of the corresponding object is undone,
+   a managed API object containing it is no longer valid. API methods cannot be called on invalidated wrapper objects.
+</remarks>
+            <returns>
+   True if the API object holds a valid Revit native object, false otherwise.
+</returns>
+            <since>
+   2014
+</since>
+        </member>
+        <member name="P:Autodesk.Revit.DB.IFC.IFCExtrusionCalculatorOptions.Scale">
+            <summary>
+   The scaling factor for length measurements from the default Revit units to the export units.
+</summary>
+            <since>
+   2012
+</since>
+        </member>
+        <member name="P:Autodesk.Revit.DB.IFC.IFCExtrusionCalculatorOptions.CustomAxis">
+            <summary>
+   The custom axis to try (if extrusionAxes includes an option for a custom direction).
+</summary>
+            <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
+   When setting this property: A non-optional argument was NULL
+</exception>
+            <since>
+   2012
+</since>
+        </member>
+        <member name="P:Autodesk.Revit.DB.IFC.IFCExtrusionCalculatorOptions.ExtrusionAxes">
+            <summary>
+   The extrusion axes to try when doing the calculation.
+</summary>
+            <exception cref="T:Autodesk.Revit.Exceptions.ArgumentOutOfRangeException">
+   When setting this property: A value passed for an enumeration argument is not a member of that enumeration
+</exception>
+            <since>
+   2012
+</since>
+        </member>
+        <member name="M:Autodesk.Revit.DB.IFC.IFCExtrusionCalculatorOptions.#ctor(Autodesk.Revit.DB.IFC.ExporterIFC,Autodesk.Revit.DB.IFC.IFCExtrusionAxes,Autodesk.Revit.DB.XYZ,System.Double)">
+            <summary>
+   Constructs a new instance of a class used to calculate extrusions from Revit geometry.
+</summary>
+            <param name="exporterIFC">
+   The exporter.
+</param>
+            <param name="extrusionAxes">
+   The extrusion axes to try when doing the calculation.
+</param>
+            <param name="customAxis">
+   The custom axis to try (if extrusionAxes includes an option for a custom direction).
+</param>
+            <param name="scale">
+   The scaling factor for length measurements from the default Revit units to the export units.
+</param>
+            <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
+   A non-optional argument was NULL
+</exception>
+            <exception cref="T:Autodesk.Revit.Exceptions.ArgumentOutOfRangeException">
+   A value passed for an enumeration argument is not a member of that enumeration
+</exception>
+            <since>
+   2012
+</since>
+        </member>
+        <member name="T:Autodesk.Revit.DB.IFC.IFCExtrusionCalculatorOptions">
+            <summary>
+   This class contains the options used to calculate extrusions from Revit geometry.
+</summary>
+            <since>
+   2012
+</since>
+        </member>
+        <member name="M:Autodesk.Revit.DB.IFC.IFCExtrusionData.GetLoops">
+            <summary>
+   Gets the curve loops that form the base shape of the extrusion.
+</summary>
+            <returns>
+   The collection of loops.
+</returns>
+            <since>
+   2012
+</since>
+        </member>
+        <member name="M:Autodesk.Revit.DB.IFC.IFCExtrusionData.ClearLoops">
+            <summary>
+   Clears the curve loops stored in the extrusion data.
+</summary>
+            <since>
+   2012
+</since>
+        </member>
+        <member name="M:Autodesk.Revit.DB.IFC.IFCExtrusionData.RemoveLoopAt(System.Int32)">
+            <summary>
+   Removes the loop at the specified index.
+</summary>
+            <param name="index">
+   The zero-based index of the loop to remove.
+</param>
+            <since>
+   2012
+</since>
+        </member>
+        <member name="M:Autodesk.Revit.DB.IFC.IFCExtrusionData.AddLoop(Autodesk.Revit.DB.CurveLoop)">
+            <summary>
+   Adds a curve loop to the extrusion data.
+</summary>
+            <param name="pLoop">
+   The curve loop.
+</param>
+            <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
+   A non-optional argument was NULL
+</exception>
+            <since>
+   2012
+</since>
+        </member>
+        <member name="M:Autodesk.Revit.DB.IFC.IFCExtrusionData.IsValid">
+            <summary>
+   Determines if the extrusion data represents a valid extrusion.
+</summary>
+            <returns>
+   True if the extrusion is valid, false otherwise.
+</returns>
+            <since>
+   2012
+</since>
+        </member>
+        <member name="P:Autodesk.Revit.DB.IFC.IFCExtrusionData.IsValidObject">
+            <summary>
+   Specifies whether the .NET object represents a valid Revit entity.
+</summary>
+            <remarks>
+   If the corresponding Revit native object is destroyed, or creation of the corresponding object is undone,
+   a managed API object containing it is no longer valid. API methods cannot be called on invalidated wrapper objects.
+</remarks>
+            <returns>
+   True if the API object holds a valid Revit native object, false otherwise.
+</returns>
+            <since>
+   2014
+</since>
+        </member>
+        <member name="P:Autodesk.Revit.DB.IFC.IFCExtrusionData.ExtrusionDirection">
+            <summary>
+   The direction used for the extrusion.
+</summary>
+            <exception cref="T:Autodesk.Revit.Exceptions.ArgumentNullException">
+   When setting this property: A non-optional argument was NULL
+</exception>
+            <since>
+   2012
+</since>
+        </member>
+        <member name="P:Autodesk.Revit.DB.IFC.IFCExtrusionData.ExtrusionBasis">
+            <summary>
+   The basis used for the extrusion.
+</summary>
+            <exception cref="T:Autodesk.Revit.Exceptions.ArgumentOutOfRangeException">
+   When setting this property: A value passed for an enumeration argument is not a member of that enumeration
+</exception>
+            <since>
+   2012
+</since>
+        </member>
+        <member name="P:Autodesk.Revit.DB.IFC.IFCExtrusionData.ScaledExtrusionLength">
+            <summary>
+   The length of the extrusion, scaled in the units of the export.
+</summary>
+            <since>
+   2012
+</since>
+        </member>
+        <member name="M:Autodesk.Revit.DB.IFC.IFCExtrusionData.#ctor">
+            <summary>
+   Constructs a new empty extrusion data object.
+</summary>
+            <since>
+   2012
+</since>
+        </member>
+        <member name="T:Autodesk.Revit.DB.IFC.IFCExtrusionData">
+            <summary>
+   Represents the geometry of an extrusion (a solid body or opening) generated
+   from Revit geometry.
+</summary>
+            <since>
+   2012
+</since>
+        </member>
+        <member name="T:Autodesk.Revit.DB.IFC.IFCExtrusionBasis">
+            <summary>
+   This enumerated type represents the possible bases for derivation of extrusion geometry.
+</summary>
+            <since>
+   2012
+</since>
+        </member>
+        <member name="F:Autodesk.Revit.DB.IFC.IFCExtrusionBasis.BasisZ">
+            <summary>
+   The Z direction.
+</summary>
+        </member>
+        <member name="F:Autodesk.Revit.DB.IFC.IFCExtrusionBasis.BasisY">
+            <summary>
+   The Y direction.
+</summary>
+        </member>
+        <member name="F:Autodesk.Revit.DB.IFC.IFCExtrusionBasis.BasisX">
+            <summary>
+   The X direction.
+</summary>
+        </member>
+        <member name="F:Autodesk.Revit.DB.IFC.IFCExtrusionBasis.InvalidBasis">
+            <summary>
+   An invalid basis (typically indicating that the extrusion extraction was unsuccessful).
+</summary>
+        </member>
+        <member name="T:Autodesk.Revit.DB.IFC.IFCExtrusionAxes">
+            <summary>
+   Represents the possible axes to try when generating an extrusion using IFCCreateExtrusionData.
+</summary>
+            <since>
+   2012
+</since>
+        </member>
+        <member name="F:Autodesk.Revit.DB.IFC.IFCExtrusionAxes.TryXYZAndCustom">
+            <summary>
+   The x-, y-, and z-axes, and a custom direction.
+</summary>
+        </member>
+        <member name="F:Autodesk.Revit.DB.IFC.IFCExtrusionAxes.TryCustom">
+            <summary>
+   A custom direction.
+</summary>
+        </member>
+        <member name="F:Autodesk.Revit.DB.IFC.IFCExtrusionAxes.TryXYZ">
+            <summary>
+   The x-, y-, and z-axes.
+</summary>
+        </member>
+        <member name="F:Autodesk.Revit.DB.IFC.IFCExtrusionAxes.TryYZ">
+            <summary>
+   The y- and z-axes.
+</summary>
+        </member>
+        <member name="F:Autodesk.Revit.DB.IFC.IFCExtrusionAxes.TryXZ">
+            <summary>
+   The x- and z-axes.
+</summary>
+        </member>
+        <member name="F:Autodesk.Revit.DB.IFC.IFCExtrusionAxes.TryZ">
+            <summary>
+   The z-axis.
+</summary>
+        </member>
+        <member name="F:Autodesk.Revit.DB.IFC.IFCExtrusionAxes.TryXY">
+            <summary>
+   The x- and y-axes.
+</summary>
+        </member>
+        <member name="F:Autodesk.Revit.DB.IFC.IFCExtrusionAxes.TryY">
+            <summary>
+   The y-axis.
+</summary>
+        </member>
+        <member name="F:Autodesk.Revit.DB.IFC.IFCExtrusionAxes.TryX">
+            <summary>
+   The x-axis.
+</summary>
+        </member>
+        <member name="F:Autodesk.Revit.DB.IFC.IFCExtrusionAxes.TryDefault">
+            <summary>
+   The default value.
 </summary>
         </member>
         <member name="M:ServerPath.#ctor">
