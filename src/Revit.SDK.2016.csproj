@@ -4,16 +4,13 @@
     https://knowledge.autodesk.com/support/revit-products/downloads/caas/downloads/content/autodesk-revit-2016-product-updates.html
     -->
 		<RevitVersion>2016</RevitVersion>
-		<Version>$(RevitVersion).0.428.0</Version>
+		<Version>$(RevitVersion).0.0.1</Version>
 		<FileVersion>$(RevitVersion).0.428.0</FileVersion>
 		<AssemblyVersion>$(RevitVersion).0.428.0</AssemblyVersion>
 		<TargetPath>net45</TargetPath>
 		<IsPackable>true</IsPackable>
+		<TargetFramework>net45</TargetFramework>
 	</PropertyGroup>
 
 	<Import Project="Revit.SDK.Nuget.csproj" />
-
-	<ItemGroup>
-	  <PackageReference Include="System.Runtime" Version="4.3.1" />
-	</ItemGroup>
 </Project>
