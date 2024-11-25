@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="Current">
 	<PropertyGroup>
 		<RevitVersion>2021</RevitVersion>
-		<Version>$(RevitVersion).0.1.2002</Version>
-		<FileVersion>$(RevitVersion).0.1</FileVersion>
-		<AssemblyVersion>$(RevitVersion).0.1</AssemblyVersion>
+		<Version>$(RevitVersion).0.0.383</Version>
+		<FileVersion>$(RevitVersion).0.0</FileVersion>
+		<AssemblyVersion>$(RevitVersion).0.0</AssemblyVersion>
 		<TargetPath>net48</TargetPath>
 		<IsPackable>true</IsPackable>
 	</PropertyGroup>
