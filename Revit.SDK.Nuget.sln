@@ -23,6 +23,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Revit.SDK.2022", "src\Revit
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Revit.SDK.2023", "src\Revit.SDK.2023.csproj", "{7B53BFF7-A071-4EFC-906D-D62BEB0EAF4A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Revit.SDK.2016", "src\Revit.SDK.2016.csproj", "{2D360DD9-5CD3-45CB-A138-64B7AD89F814}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Revit.SDK.2017", "src\Revit.SDK.2017.csproj", "{B5E48F60-050D-417F-B1B0-35A25CE0F403}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Revit.SDK.2018", "src\Revit.SDK.2018.csproj", "{E7FB47AA-DDB5-458E-BD5A-758B4D5C67AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +58,18 @@ Global
 		{7B53BFF7-A071-4EFC-906D-D62BEB0EAF4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B53BFF7-A071-4EFC-906D-D62BEB0EAF4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B53BFF7-A071-4EFC-906D-D62BEB0EAF4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D360DD9-5CD3-45CB-A138-64B7AD89F814}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D360DD9-5CD3-45CB-A138-64B7AD89F814}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D360DD9-5CD3-45CB-A138-64B7AD89F814}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D360DD9-5CD3-45CB-A138-64B7AD89F814}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5E48F60-050D-417F-B1B0-35A25CE0F403}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5E48F60-050D-417F-B1B0-35A25CE0F403}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5E48F60-050D-417F-B1B0-35A25CE0F403}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5E48F60-050D-417F-B1B0-35A25CE0F403}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7FB47AA-DDB5-458E-BD5A-758B4D5C67AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7FB47AA-DDB5-458E-BD5A-758B4D5C67AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7FB47AA-DDB5-458E-BD5A-758B4D5C67AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7FB47AA-DDB5-458E-BD5A-758B4D5C67AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

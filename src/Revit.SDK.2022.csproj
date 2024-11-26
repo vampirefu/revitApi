@@ -2,9 +2,9 @@
 
 	<PropertyGroup>
 		<RevitVersion>2022</RevitVersion>
-		<Version>$(RevitVersion).0.0.2001</Version>
-		<FileVersion>$(RevitVersion).0.0</FileVersion>
-		<AssemblyVersion>$(RevitVersion).0.0</AssemblyVersion>
+		<Version>$(RevitVersion).0.0.7</Version>
+		<FileVersion>$(RevitVersion).0.0.348</FileVersion>
+		<AssemblyVersion>$(RevitVersion).0.0.348</AssemblyVersion>
 		<TargetPath>net48</TargetPath>
 		<IsPackable>true</IsPackable>
 	</PropertyGroup>

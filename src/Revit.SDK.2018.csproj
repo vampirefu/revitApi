@@ -4,9 +4,9 @@
     https://knowledge.autodesk.com/support/revit-products/downloads/caas/downloads/content/autodesk-revit-2018-product-updates.html
     -->
 		<RevitVersion>2018</RevitVersion>
-		<Version>$(RevitVersion).0.0.420</Version>
-		<FileVersion>$(RevitVersion).0.0</FileVersion>
-		<AssemblyVersion>$(RevitVersion).0.0</AssemblyVersion>
+		<Version>$(RevitVersion).0.0.7</Version>
+		<FileVersion>$(RevitVersion).0.0.420</FileVersion>
+		<AssemblyVersion>$(RevitVersion).0.0.420</AssemblyVersion>
 		<TargetPath>net452</TargetPath>
 		<IsPackable>true</IsPackable>
 	</PropertyGroup>

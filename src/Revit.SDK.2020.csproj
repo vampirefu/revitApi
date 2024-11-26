@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="Current">
 	<PropertyGroup>
 		<RevitVersion>2020</RevitVersion>
-		<Version>$(RevitVersion).0.0.377</Version>
-		<FileVersion>$(RevitVersion).0.0</FileVersion>
-		<AssemblyVersion>$(RevitVersion).0.0</AssemblyVersion>
+		<Version>$(RevitVersion).0.0.7</Version>
+		<FileVersion>$(RevitVersion).0.0.377</FileVersion>
+		<AssemblyVersion>$(RevitVersion).0.0.377</AssemblyVersion>
 		<TargetPath>net47</TargetPath>
 		<IsPackable>true</IsPackable>
 	</PropertyGroup>
